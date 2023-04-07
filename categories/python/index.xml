@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on TechTales</title>
+    <link>/categories/python/</link>
+    <description>Recent content in Python on TechTales</description>
+    <image>
+      <title>TechTales</title>
+      <url>papermod-cover.png</url>
+      <link>papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Apr 2023 10:26:48 +0200</lastBuildDate><atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Geopy: Geolocate Addresses Easily</title>
+      <link>/posts/geocode/</link>
+      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
+      
+      <guid>/posts/geocode/</guid>
+      <description>Titre 1 Titre 2 Markdown syntax</description>
+    </item>
+    
+    <item>
+      <title>Sentiment Analysis on Twitter</title>
+      <link>/posts/twitter/</link>
+      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
+      
+      <guid>/posts/twitter/</guid>
+      <description>Titre 1 Hey there, fellow data nerds! Today we&amp;rsquo;re going to dive into the world of brand sentiment analysis using Twitter&amp;rsquo;s API. Strap on your thinking caps and let&amp;rsquo;s get started!
+First things first, what is brand sentiment analysis? Simply put, it&amp;rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.</description>
+    </item>
+    
+  </channel>
+</rss>
