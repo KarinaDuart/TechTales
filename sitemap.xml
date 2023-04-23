@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kagui123.github.io/TechTales/markdown-syntax.fr/</loc>
+    <loc>https://karinaduart.github.io/TechTales/markdown-syntax.fr/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/tags/api/</loc>
+    <loc>https://karinaduart.github.io/TechTales/tags/api/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/categories/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/posts/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/categories/python/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/tags/sentiment-analysis/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/posts/twitter/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/tags/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/tags/twitter/</loc>
+    <lastmod>2023-04-10T10:26:48+02:00</lastmod>
+  </url><url>
+    <loc>https://karinaduart.github.io/TechTales/tags/geocode/</loc>
     <lastmod>2023-04-02T10:26:48+02:00</lastmod>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/categories/</loc>
+    <loc>https://karinaduart.github.io/TechTales/posts/geocode/</loc>
     <lastmod>2023-04-02T10:26:48+02:00</lastmod>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/tags/geocode/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
+    <loc>https://karinaduart.github.io/TechTales/about/</loc>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/posts/geocode/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
+    <loc>https://karinaduart.github.io/TechTales/archives.fr/</loc>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/posts/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
+    <loc>https://karinaduart.github.io/TechTales/archives/</loc>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/categories/python/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
+    <loc>https://karinaduart.github.io/TechTales/search/</loc>
   </url><url>
-    <loc>https://kagui123.github.io/TechTales/tags/sentiment-analysis/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/posts/twitter/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/tags/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/tags/twitter/</loc>
-    <lastmod>2023-04-02T10:26:48+02:00</lastmod>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/about/</loc>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/archives.fr/</loc>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/archives/</loc>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/search/</loc>
-  </url><url>
-    <loc>https://kagui123.github.io/TechTales/search.fr/</loc>
+    <loc>https://karinaduart.github.io/TechTales/search.fr/</loc>
   </url>
 </urlset>

@@ -2,49 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>TechTales</title>
-    <link>https://kagui123.github.io/TechTales/</link>
+    <link>https://karinaduart.github.io/TechTales/</link>
     <description>Recent content on TechTales</description>
     <image>
       <title>TechTales</title>
-      <url>https://kagui123.github.io/TechTales/papermod-cover.png</url>
-      <link>https://kagui123.github.io/TechTales/papermod-cover.png</link>
+      <url>https://karinaduart.github.io/TechTales/papermod-cover.png</url>
+      <link>https://karinaduart.github.io/TechTales/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 02 Apr 2023 10:26:48 +0200</lastBuildDate><atom:link href="https://kagui123.github.io/TechTales/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Apr 2023 10:26:48 +0200</lastBuildDate><atom:link href="https://karinaduart.github.io/TechTales/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Syntax Guide For L2</title>
-      <link>https://kagui123.github.io/TechTales/markdown-syntax.fr/</link>
+      <link>https://karinaduart.github.io/TechTales/markdown-syntax.fr/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://kagui123.github.io/TechTales/markdown-syntax.fr/</guid>
+      <guid>https://karinaduart.github.io/TechTales/markdown-syntax.fr/</guid>
       <description>Sample article showcasing basic Markdown syntax and formatting for HTML elements.</description>
     </item>
     
     <item>
-      <title>Geopy: Geolocate Addresses Easily</title>
-      <link>https://kagui123.github.io/TechTales/posts/geocode/</link>
-      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
-      
-      <guid>https://kagui123.github.io/TechTales/posts/geocode/</guid>
-      <description>Titre 1 Titre 2 Markdown syntax</description>
-    </item>
-    
-    <item>
       <title>Sentiment Analysis on Twitter</title>
-      <link>https://kagui123.github.io/TechTales/posts/twitter/</link>
-      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
+      <link>https://karinaduart.github.io/TechTales/posts/twitter/</link>
+      <pubDate>Mon, 10 Apr 2023 10:26:48 +0200</pubDate>
       
-      <guid>https://kagui123.github.io/TechTales/posts/twitter/</guid>
-      <description>Titre 1 Hey there, fellow data nerds! Today we&amp;rsquo;re going to dive into the world of brand sentiment analysis using Twitter&amp;rsquo;s API. Strap on your thinking caps and let&amp;rsquo;s get started!
+      <guid>https://karinaduart.github.io/TechTales/posts/twitter/</guid>
+      <description>Introduction Hey there, fellow data nerds! Today we&amp;rsquo;re going to dive into the world of brand sentiment analysis using Twitter&amp;rsquo;s API. Strap on your thinking caps and let&amp;rsquo;s get started!
 First things first, what is brand sentiment analysis? Simply put, it&amp;rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.</description>
     </item>
     
     <item>
+      <title>Geopy: Geolocate Addresses Easily</title>
+      <link>https://karinaduart.github.io/TechTales/posts/geocode/</link>
+      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
+      
+      <guid>https://karinaduart.github.io/TechTales/posts/geocode/</guid>
+      <description>Context Hello there fellow data enthusiasts! Today, I want to tell you about a really cool Python code that I came across recently. But first, let me tell you a little bit about my journey.
+As a junior data analyst, I have tried to use different Geocoding APIs such as Google Maps and Bing Maps, but I quickly discovered that there were limitations on the number of requests I could make.</description>
+    </item>
+    
+    <item>
       <title>About</title>
-      <link>https://kagui123.github.io/TechTales/about/</link>
+      <link>https://karinaduart.github.io/TechTales/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kagui123.github.io/TechTales/about/</guid>
+      <guid>https://karinaduart.github.io/TechTales/about/</guid>
       <description>Welcome to my blog, where I share my journey as a junior data analyst navigating the exciting and ever-evolving world of technology. As I continue to learn and grow in this field, I’ll be sharing my insights, experiences, and projects with you. From data analysis to software development, I’ll be covering a range of tech-related topics that I hope will be both informative and inspiring. So whether you’re a fellow data analyst or simply interested in the world of tech, I invite you to join me on this journey of discovery and learning.</description>
     </item>
     
