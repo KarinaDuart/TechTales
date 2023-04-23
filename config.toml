@@ -1,0 +1,153 @@
+baseURL = "https://karinaduart.github.io/TechTales/"
+title = "TechTales"
+paginate = 5
+theme = "PaperMod"
+enableInlineShortcodes = true
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+enableEmoji = true
+pygmentsUseClasses = true
+
+canonifyURLs = true
+
+[minify]
+disableXML = true
+
+[languages.en]
+languageName = "English"
+weight = 1
+
+  [languages.en.taxonomies]
+    category = "categories"
+    tag = "tags"
+
+    [[languages.en.menu.main]]
+        name = "Search"
+        url = "search/"
+        weight = 10
+
+    [[languages.en.menu.main]]
+        name = "Categories"
+        url = "categories/"
+        weight = 20
+
+    [[languages.en.menu.main]]
+        name = "Tags"
+        url = "tags/"
+        weight = 30
+
+    [[languages.en.menu.main]]
+        name = "Archive"
+        url = "archives/"
+        weight = 40
+
+    [[languages.en.menu.main]]
+        name = "About"
+        url = "about/"
+        weight = 50
+
+#[languages.fr]
+#languageName = ":fr:"
+#languageAltTitle = "French"
+#weight = 2
+#title = "TechTales"
+
+    #[languages.fr.taxonomies]
+    #category = "FRcategories"
+    #tag = "FRtags"
+
+    #[[languages.fr.menu.main]]
+    #name = "Catégories"
+    #url = "frcategories"
+    #weight = 10
+
+    #[[languages.fr.menu.main]]
+    #name = "Tags"
+    #url = "frtags"
+    #weight = 20
+
+    #[[languages.fr.menu.main]]
+    #name = "Archive"
+    #url = "archives/"
+    #weight = 30
+
+[params]
+env = "production"
+author = "Karina Duarte"
+defaultTheme = "auto"
+ShowShareButtons = true
+ShowReadingTime = true
+displayFullLangName = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowRssButtonInSectionTermList = true
+ShowToc = true
+images = [ "papermod-cover.png" ]
+
+  [params.profileMode]
+  enabled = false
+  title = "TechTales"
+  imageUrl = "#"
+  imageTitle = "my image"
+
+    [[params.profileMode.buttons]]
+    name = "Archives"
+    url = "archives"
+
+    [[params.profileMode.buttons]]
+    name = "Posts"
+    url = "posts"
+
+    [[params.profileMode.buttons]]
+    name = "Tags"
+    url = "tags"
+
+  [params.homeInfoParams]
+  Title = "TechTales"
+  Content = """
+"Pretty nice - Most People"
+"""
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/kagui123"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/karina-duarte-77999655/"
+
+  [[params.socialIcons]]
+  name = "Email"
+  url = "karina.duart@protonmail.com"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = false
+
+[privacy.vimeo]
+disabled = false
+simple = true
+
+[privacy.twitter]
+disabled = false
+enableDNT = true
+simple = true
+
+[privacy.instagram]
+disabled = false
+simple = true
+
+[privacy.youtube]
+disabled = false
+privacyEnhanced = true
+
+[services.instagram]
+disableInlineCSS = true
+
+[services.twitter]
+disableInlineCSS = true

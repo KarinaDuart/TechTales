@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on TechTales</title>
+    <link>https://karinaduart.github.io/TechTales/categories/python/</link>
+    <description>Recent content in Python on TechTales</description>
+    <image>
+      <title>TechTales</title>
+      <url>https://karinaduart.github.io/TechTales/papermod-cover.png</url>
+      <link>https://karinaduart.github.io/TechTales/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 10 Apr 2023 10:26:48 +0200</lastBuildDate><atom:link href="https://karinaduart.github.io/TechTales/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sentiment Analysis on Twitter</title>
+      <link>https://karinaduart.github.io/TechTales/posts/twitter/</link>
+      <pubDate>Mon, 10 Apr 2023 10:26:48 +0200</pubDate>
+      
+      <guid>https://karinaduart.github.io/TechTales/posts/twitter/</guid>
+      <description>Introduction Hey there, fellow data nerds! Today we&amp;rsquo;re going to dive into the world of brand sentiment analysis using Twitter&amp;rsquo;s API. Strap on your thinking caps and let&amp;rsquo;s get started!
+First things first, what is brand sentiment analysis? Simply put, it&amp;rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.</description>
+    </item>
+    
+    <item>
+      <title>Geopy: Geolocate Addresses Easily</title>
+      <link>https://karinaduart.github.io/TechTales/posts/geocode/</link>
+      <pubDate>Sun, 02 Apr 2023 10:26:48 +0200</pubDate>
+      
+      <guid>https://karinaduart.github.io/TechTales/posts/geocode/</guid>
+      <description>Context Hello there fellow data enthusiasts! Today, I want to tell you about a really cool Python code that I came across recently. But first, let me tell you a little bit about my journey.
+As a junior data analyst, I have tried to use different Geocoding APIs such as Google Maps and Bing Maps, but I quickly discovered that there were limitations on the number of requests I could make.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Sentiment Analysis on Twitter | TechTales</title>
+<meta name="keywords" content="API, Twitter, Sentiment Analysis">
+<meta name="description" content="Introduction Hey there, fellow data nerds! Today we&rsquo;re going to dive into the world of brand sentiment analysis using Twitter&rsquo;s API. Strap on your thinking caps and let&rsquo;s get started!
+First things first, what is brand sentiment analysis? Simply put, it&rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.">
+<meta name="author" content="Karina Duarte">
+<link rel="canonical" href="https://karinaduart.github.io/TechTales/posts/twitter/">
+<link crossorigin="anonymous" href="https://karinaduart.github.io/TechTales/assets/css/stylesheet.bf5f9f73cf17311d52cedbcda82c922e91b2f566d88a85ad9f5b5a08b586bd5f.css" integrity="sha256-v1&#43;fc88XMR1SztvNqCySLpGy9WbYioWtn1taCLWGvV8=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="https://karinaduart.github.io/TechTales/assets/js/highlight.acb54fd32bbc1982428b8850317e45d076b95012730a5936667e6bc21777692a.js" integrity="sha256-rLVP0yu8GYJCi4hQMX5F0Ha5UBJzClk2Zn5rwhd3aSo="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://karinaduart.github.io/TechTales/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://karinaduart.github.io/TechTales/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://karinaduart.github.io/TechTales/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://karinaduart.github.io/TechTales/apple-touch-icon.png">
+<link rel="mask-icon" href="https://karinaduart.github.io/TechTales/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Sentiment Analysis on Twitter" />
+<meta property="og:description" content="Introduction Hey there, fellow data nerds! Today we&rsquo;re going to dive into the world of brand sentiment analysis using Twitter&rsquo;s API. Strap on your thinking caps and let&rsquo;s get started!
+First things first, what is brand sentiment analysis? Simply put, it&rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://karinaduart.github.io/TechTales/posts/twitter/" />
+<meta property="og:image" content="https://karinaduart.github.io/TechTales/img/twitter.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-10T10:26:48+02:00" />
+<meta property="article:modified_time" content="2023-04-10T10:26:48+02:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://karinaduart.github.io/TechTales/img/twitter.jpg" />
+<meta name="twitter:title" content="Sentiment Analysis on Twitter"/>
+<meta name="twitter:description" content="Introduction Hey there, fellow data nerds! Today we&rsquo;re going to dive into the world of brand sentiment analysis using Twitter&rsquo;s API. Strap on your thinking caps and let&rsquo;s get started!
+First things first, what is brand sentiment analysis? Simply put, it&rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://karinaduart.github.io/TechTales/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Sentiment Analysis on Twitter",
+      "item": "https://karinaduart.github.io/TechTales/posts/twitter/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Sentiment Analysis on Twitter",
+  "name": "Sentiment Analysis on Twitter",
+  "description": "Introduction Hey there, fellow data nerds! Today we\u0026rsquo;re going to dive into the world of brand sentiment analysis using Twitter\u0026rsquo;s API. Strap on your thinking caps and let\u0026rsquo;s get started!\nFirst things first, what is brand sentiment analysis? Simply put, it\u0026rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.",
+  "keywords": [
+    "API", "Twitter", "Sentiment Analysis"
+  ],
+  "articleBody": "Introduction Hey there, fellow data nerds! Today we’re going to dive into the world of brand sentiment analysis using Twitter’s API. Strap on your thinking caps and let’s get started!\nFirst things first, what is brand sentiment analysis? Simply put, it’s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.\nSo, why use Twitter’s API for this? Well, Twitter is a treasure trove of unfiltered opinions and emotions. It’s a place where people go to rant, rave, and share their experiences with the world. As such, it’s a prime source of data for sentiment analysis.\nNow, before we dive into the nitty-gritty of how to use Twitter’s API for brand sentiment analysis, let’s talk about some of the tools and techniques we’ll be using.\nFor this project, I’ll analyse peoples optnions on a french company called Capgemini. I’ll be using Python and accomplishing my task in 4 steps:\nGather data: We’ll use Twitter’s API to collect tweets containing relevant keywords or hashtags related to our brand of interest. Clean and preprocess the data: We’ll remove any irrelevant content (e.g. retweets, spam), tokenize the remaining text into individual words, and perform various other text preprocessing steps (e.g. removing stop words, stemming/lemmatization). Perform sentiment analysis: Building an NLP model is relatively complex, we will simply use the ’nltk’ package which provides us with several NLP functions, including a function to invoke a pre-trained sentiment analysis model. Analyze and visualize the results: We’ll use various data visualization tools (e.g. word clouds, bar charts) to explore the sentiment of our data and identify any patterns or trends. Of course, this is a very high-level overview of the process, and there are countless details and nuances to consider along the way. But hopefully, this gives you a sense of what’s involved.\nPreparing our work enviromment Let’s install and import everything we’ll need, we’ll talk about these packages as we move on.\nInstalling the packages !pip install tweepy !pip install oauth2client !pip install nltk !pip install emoji !pip install wordcloud !pip install geopy !pip install folium Importing General packages\nimport pandas as pd import numpy as np import os import itertools from tqdm import tqdm import datetime Text analysis packages\nfrom nltk.corpus import stopwords from nltk.sentiment import SentimentIntensityAnalyzer import nltk import re from collections import Counter import emoji Graphics packages\nimport matplotlib.pyplot as plt from PIL import Image from wordcloud import WordCloud, STOPWORDS import folium from folium.plugins import MarkerCluster, HeatMap from geopy.geocoders import Nominatim API wrappers Twitter\nimport tweepy Twitter’s API In order to accomplish this project, you will need to create an account on Twitters Developers Platform. I personnally find this API rather difficult to use. Even getting an account could be tricky for new users, so we may comeback to this on a future post.\nCreation your API’s keys You will need to start a project on this platform and get the following information: API_KEY, API_SECRET_KEY, BEARER_TOKEN\nimage: twitter_API.png\nReplace those on the following code:\nAPI_KEY = 'XXXXXXXXX' API_SECRET_KEY = 'XXXXXXXX' BEARER_TOKEN = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' API Client Authentication and Creation auth = tweepy.AppAuthHandler(API_KEY, API_SECRET_KEY) api = tweepy.API(auth, wait_on_rate_limit=True) This code is using the Tweepy library, which is a Python wrapper for the Twitter API, to authenticate and establish a connection to the Twitter API.\nThe first line creates an instance of the AppAuthHandler class provided by Tweepy. This class handles the OAuth2 authentication method for the Twitter API. The API_KEY and API_SECRET_KEY are the keys provided by Twitter to identify the application using the API.\nThe second line creates an instance of the API class provided by Tweepy, which allows you to interact with the Twitter API. The auth parameter is set to the AppAuthHandler instance that was created in the previous line. The wait_on_rate_limit parameter is set to True, which means that Tweepy will automatically wait if the API rate limit is reached, instead of throwing an error.\nWith these two lines of code, you should be able to make authenticated requests to the Twitter API using the api instance.\nGetting the data First, you define a string variable query with the value “capgemini -filter:retweets”. This is the search query that you want to use to search for tweets. notice that we only want to get retweets: this is a way of filtering tweets made by other accounts and not by Capgemini account itself.\nquery =\"capgemini -filter:retweets\" Next, you create a Cursor object using the tweepy.Cursor method, passing in the following parameters:\napi.search_tweets: This is the search method of the Twitter API that you want to use to search for tweets. q=query: This is the search query that you defined earlier (in my case “capgemini”). lang=“en”: This specifies that you only want to search for tweets that are written in English. tweet_mode=“extended”: This specifies that you want to retrieve the full text of each tweet (up to 280 characters). ).items(50): This specifies that you want to retrieve up to 50 tweets that match your search query. tweets = tweepy.Cursor(api.search_tweets, q=query, lang=\"en\", tweet_mode=\"extended\", #since=\"2021-06-18\", # put here the last week #until=\"2021-06-25\", ).items(50) tweets = list(tweets) You could also specify dates with the parameter 'since' and 'until'. After creating the Cursor object, you convert it to a list using the list() function and assign it to the variable tweets. This retrieves the tweets that match your search query and stores them in a list.\nUnderstanding our results We have retrivied a list of 50 that match our search query. Let’s take a look at what elements are contained in this json response of 1 single tweet:\ntest = list(tweets)[4] json_test = test._json json_test This is my full response for 1 single tweet:\n{‘created_at’: ‘Fri Apr 14 11:35:01 +0000 2023’, ‘id’: 1646839472493871104, ‘id_str’: ‘1646839472493871104’, ‘full_text’: ‘Through this initiative, we aim to empower the next generation of leaders \u0026 help them get the future they want. Please join us in giving them a warm welcome \u0026 wishing them good luck as they embark on a new journey with us at Capgemini. #GetTheFutureYouWant #LifeAtCapgemini https://t.co/SJVmxP6q4j', ’truncated’: False, ‘display_text_range’: [0, 281], ’entities’: {‘hashtags’: [{’text’: ‘GetTheFutureYouWant’, ‘indices’: [244, 264]}, {’text’: ‘LifeAtCapgemini’, ‘indices’: [265, 281]}], ‘symbols’: [], ‘user_mentions’: [], ‘urls’: [], ‘media’: [{‘id’: 1646839435839799296, ‘id_str’: ‘1646839435839799296’, ‘indices’: [282, 305], ‘media_url’: ‘http://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg’, ‘media_url_https’: ‘https://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg’, ‘url’: ‘https://t.co/SJVmxP6q4j’, ‘display_url’: ‘pic.twitter.com/SJVmxP6q4j’, ’expanded_url’: ‘https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1’, ’type’: ‘photo’, ‘sizes’: {’thumb’: {‘w’: 150, ‘h’: 150, ‘resize’: ‘crop’}, ‘medium’: {‘w’: 1024, ‘h’: 768, ‘resize’: ‘fit’}, ’large’: {‘w’: 1024, ‘h’: 768, ‘resize’: ‘fit’}, ‘small’: {‘w’: 680, ‘h’: 510, ‘resize’: ‘fit’}}}]}, ’extended_entities’: {‘media’: [{‘id’: 1646839435839799296, ‘id_str’: ‘1646839435839799296’, ‘indices’: [282, 305], ‘media_url’: ‘http://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg’, ‘media_url_https’: ‘https://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg’, ‘url’: ‘https://t.co/SJVmxP6q4j’, ‘display_url’: ‘pic.twitter.com/SJVmxP6q4j’, ’expanded_url’: ‘https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1’, ’type’: ‘photo’, ‘sizes’: {’thumb’: {‘w’: 150, ‘h’: 150, ‘resize’: ‘crop’}, ‘medium’: {‘w’: 1024, ‘h’: 768, ‘resize’: ‘fit’}, ’large’: {‘w’: 1024, ‘h’: 768, ‘resize’: ‘fit’}, ‘small’: {‘w’: 680, ‘h’: 510, ‘resize’: ‘fit’}}}, {‘id’: 1646839436766765057, ‘id_str’: ‘1646839436766765057’, ‘indices’: [282, 305], ‘media_url’: ‘http://pbs.twimg.com/media/Ftq_vg6WYAE0cyW.jpg’, ‘media_url_https’: ‘https://pbs.twimg.com/media/Ftq_vg6WYAE0cyW.jpg’, ‘url’: ‘https://t.co/SJVmxP6q4j’, ‘display_url’: ‘pic.twitter.com/SJVmxP6q4j’, ’expanded_url’: ‘https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1’, ’type’: ‘photo’, ‘sizes’: {’thumb’: {‘w’: 150, ‘h’: 150, ‘resize’: ‘crop’}, ’large’: {‘w’: 1600, ‘h’: 1200, ‘resize’: ‘fit’}, ‘medium’: {‘w’: 1200, ‘h’: 900, ‘resize’: ‘fit’}, ‘small’: {‘w’: 680, ‘h’: 510, ‘resize’: ‘fit’}}}]}, ‘metadata’: {‘iso_language_code’: ’en’, ‘result_type’: ‘recent’}, ‘source’: ‘Twitter Web App’, ‘in_reply_to_status_id’: 1646839468219850752, ‘in_reply_to_status_id_str’: ‘1646839468219850752’, ‘in_reply_to_user_id’: 44105494, ‘in_reply_to_user_id_str’: ‘44105494’, ‘in_reply_to_screen_name’: ‘CapgeminiIndia’, ‘user’: {‘id’: 44105494, ‘id_str’: ‘44105494’, ’name’: ‘Capgemini India’, ‘screen_name’: ‘CapgeminiIndia’, ’location’: ‘13 major cities across India’, ‘description’: ‘We explore the endless possibilities of tech-driven services enabled by the human touch. Follow @JoinCapgeminiIN for live hiring updates \u0026 #GetTheFutureYouWant!’, ‘url’: ‘https://t.co/ykRGVlR5JI', ’entities’: {‘url’: {‘urls’: [{‘url’: ‘https://t.co/ykRGVlR5JI’, ’expanded_url’: ‘https://www.capgemini.com/in-en/’, ‘display_url’: ‘capgemini.com/in-en/’, ‘indices’: [0, 23]}]}, ‘description’: {‘urls’: []}}, ‘protected’: False, ‘followers_count’: 170079, ‘friends_count’: 955, ’listed_count’: 788, ‘created_at’: ‘Tue Jun 02 12:01:57 +0000 2009’, ‘favourites_count’: 10943, ‘utc_offset’: None, ’time_zone’: None, ‘geo_enabled’: True, ‘verified’: True, ‘statuses_count’: 42683, ’lang’: None, ‘contributors_enabled’: False, ‘is_translator’: False, ‘is_translation_enabled’: False, ‘profile_background_color’: ‘C0DEED’, ‘profile_background_image_url’: ‘http://abs.twimg.com/images/themes/theme1/bg.png', ‘profile_background_image_url_https’: ‘https://abs.twimg.com/images/themes/theme1/bg.png', ‘profile_background_tile’: False, ‘profile_image_url’: ‘http://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg', ‘profile_image_url_https’: ‘https://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg', ‘profile_banner_url’: ‘https://pbs.twimg.com/profile_banners/44105494/1671516631', ‘profile_link_color’: ‘3B94D9’, ‘profile_sidebar_border_color’: ‘C0DEED’, ‘profile_sidebar_fill_color’: ‘DDEEF6’, ‘profile_text_color’: ‘333333’, ‘profile_use_background_image’: True, ‘has_extended_profile’: False, ‘default_profile’: False, ‘default_profile_image’: False, ‘following’: None, ‘follow_request_sent’: None, ’notifications’: None, ’translator_type’: ’none’, ‘withheld_in_countries’: []}, ‘geo’: None, ‘coordinates’: None, ‘place’: None, ‘contributors’: None, ‘is_quote_status’: False, ‘retweet_count’: 0, ‘favorite_count’: 1, ‘favorited’: False, ‘retweeted’: False, ‘possibly_sensitive’: False, ’lang’: ’en’}\nAs you can see, a tweet contains much for the it’s text. Now we can extract the information we need for our analyses using the .attribute syntax (.full_text, .user.screen_name, etc.) to extract the text of the tweet, its creation date, hashtags, user’s location, user’s follower count, user’s status count, tweet’s retweet count, and tweet’s favorite count. For exemple:\ntest.full_text ‘Through this initiative, we aim to empower the next generation of leaders \u0026 help them get the future they want. Please join us in giving them a warm welcome \u0026 wishing them good luck as they embark on a new journey with us at Capgemini. #GetTheFutureYouWant #LifeAtCapgemini https://t.co/SJVmxP6q4j'\nExtracting the diffrent elements of our tweets The attributes we want to extract are the following: full_text, created_at, entities.hashtags, user.location, user.followers_count, user.statuses_count, retweet_count, favorite_count\ntweets_infos = [] for tweet in tqdm(tweets): tweet_info = [tweet.full_text, tweet.created_at, [h['text'] for h in tweet.entities['hashtags']], tweet.user.location, tweet.user.followers_count, tweet.user.statuses_count, tweet.retweet_count, tweet.favorite_count] tweets_infos.append(tweet_info) The code provided extracts information from a list of tweets retrieved from the Twitter API. It iterates through each tweet in the list and extracts the full text of the tweet, creation date, hashtags, user location, follower count, status count, retweet count, and favorite count using various attributes of the tweet object. The extracted information is stored in a list of lists called tweets_infos.\nNote that:\ntqdm is a Python library for creating progress bars, and it is used here to provide a visual indication of the progress of the loop. [h[’text’] for h in tweet.entities[‘hashtags’]]: This extracts the hashtags used in the tweet. The entities attribute of the tweet object contains metadata about the tweet, including hashtags. This line uses a list comprehension to extract the text of each hashtag in the tweet. Pre-processing Converting our results to a dataframe Now let’s create a dataframe and take a look at our results.\ndf = pd.DataFrame(tweets_infos) df.columns = ['full_text', 'created_at', 'hashtags', 'location', 'followers', 'statuses', 'retweets', 'favorites'] df full_text created_at hashtags location followers statuses retweets favorites 0 @rahulphatangare Same thing happened with my relative but Its capgemini 2023-04-14 12:51:44+00:00 [] 629 48890 0 0 1 🔔 New Job Alert! Check Out 👉Capgemini Invent - Graduate Business Technology Accelerate Programme. Apply Now! 🎓 2023-04-14 12:01:34+00:00 [‘graduate’, ‘jobs’, ‘graduatejobs’, ‘capgemini’, ‘grb’] Brighton and London, UK 18763 16081 0 0 Downloading stopwords from nltk Stopwords are common words such as “the”, “and”, “is”, etc., that are often removed from text data during text processing tasks like text analysis or natural language processing (NLP) to filter out noise and reduce computational overhead. We are goint to download a list of stopwords using the NLTK (Natural Language Toolkit) package in Python.\nnltk.download('stopwords') stop_words = set(stopwords.words('english')) Defining a cleaning fonction def clean_tweet(txt): return re.sub(\"(http\\S+)|(@\\S+)\", \"\", txt).replace('#', '') The clean_tweet() function will be called to clean the tweet text by removing any unnecessary characters or symbols, and the resulting cleaned text is converted to lowercase using the .lower() function.\nCleaning the data First, the tweets_text variable is created to store the text of the tweets by extracting the first element (i.e., the full text) from the tweets_infos list. Next, a corpus list is initialized to store the processed text data after pre-processing steps.\ntweets_text = [t[0] for t in tweets_infos] corpus = [] for tweet in tweets_text: clean = clean_tweet(tweet).lower() clean = re.sub(r'[^\\w\\s\\U00010000-\\U0010ffff]', ' ', clean) clean = clean.split() collection_words = ['capgemini'] clean = [word for word in clean if not word in collection_words] clean = [word for word in clean if not word in stop_words] corpus.extend(clean) The re.sub() function is used to substitute any characters or symbols that are not alphanumeric or whitespace with a space character. This step helps in removing any special characters or emojis from the text data. clean = clean.split(): The tweet text is then split into a list of words using the .split() function, which separates words based on whitespace. collection_words = [‘capgemini’]: A list of collection words, which are words that are known to be irrelevant or redundant in the context of the analysis, is created. A list comprehension is used to filter out the collection words from the list of words in the tweet text. Then another list comprehension is used to remove the stop words.\nAnalysis So what can we say about these tweets?\nSingle words analysis Let’s count how many single words we have:\nprint(f\"There are {len(set(corpus))} words in the combination of all searched tweets.\"). There are 533 words in the combination of all searched tweets.\nWhich ones are the most frequent?\ntop10_words = Counter(corpus).most_common(10) top10_words [(‘apply’, 8), (‘2023’, 7), (‘us’, 7), (‘getthefutureyouwant’, 7), (’new’, 6), (‘job’, 6), (‘join’, 6), (‘journey’, 5), (‘data’, 5), (’next’, 4)]\nWe can also show this single word analysis in a bar plot:\ndef plot_frequencies(words, top=15): # Create dataframe for plotting frequency_df = pd.DataFrame(Counter(words).most_common(top), columns=['words', 'count']) # Plot frequency_df.sort_values(by='count').plot.barh(x='words', y='count', color=\"red\") plt.title(\"Most Common Words in Tweets\", fontweight='semibold') plt.show() plot_frequencies(corpus, top=10) Wordcloud def wordcloud(corpus, title=None, mask=None, figsize=(10, 10)): # preprocess data corpus = str(corpus).replace(\"'\", \"\") wordcloud = WordCloud( background_color = 'white', max_font_size = 45, min_font_size = 5, contour_width = 0.1, contour_color = 'silver', repeat = True, stopwords=STOPWORDS, random_state = 1).generate(str(corpus)) fig = plt.figure(1, figsize=figsize) plt.axis('off') if title: fig.suptitle(title, fontsize=18, y=0.75) plt.imshow(wordcloud) wordcloud(corpus, title=\"Most Common Words in Tweets\") Conclusion So, what are some potential applications of brand sentiment analysis using Twitter’s API? Here are a few:\nMarket research: By understanding how people feel about a particular brand or product, companies can make more informed decisions about marketing strategies, product development, and customer service.\nCrisis management: If a company experiences a PR crisis (e.g. a product recall, a viral negative review), sentiment analysis can help them gauge the public’s response and take appropriate action.\nCompetitive analysis: By comparing the sentiment of their brand to that of their competitors, companies can gain insights into their relative strengths and weaknesses in the marketplace.\nOverall, brand sentiment analysis using Twitter’s API is a powerful tool for gaining insights into the public’s perceptions of a particular brand or product. With the right tools, techniques, and a healthy dose of data science know-how, you can unlock valuable insights that can inform business decisions and drive growth. So get out there and start analyzing those tweets!\n",
+  "wordCount" : "2399",
+  "inLanguage": "en",
+  "image":"https://karinaduart.github.io/TechTales/img/twitter.jpg","datePublished": "2023-04-10T10:26:48+02:00",
+  "dateModified": "2023-04-10T10:26:48+02:00",
+  "author":{
+    "@type": "Person",
+    "name": "Karina Duarte"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://karinaduart.github.io/TechTales/posts/twitter/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TechTales",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://karinaduart.github.io/TechTales/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://karinaduart.github.io/TechTales/" accesskey="h" title="TechTales (Alt + H)">TechTales</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://karinaduart.github.io/TechTales/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://karinaduart.github.io/TechTales/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://karinaduart.github.io/TechTales/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://karinaduart.github.io/TechTales/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://karinaduart.github.io/TechTales/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://karinaduart.github.io/TechTales/">Home</a>&nbsp;»&nbsp;<a href="https://karinaduart.github.io/TechTales/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Sentiment Analysis on Twitter
+    </h1>
+    <div class="post-meta"><span title='2023-04-10 10:26:48 +0200 CEST'>April 10, 2023</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Karina Duarte
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://karinaduart.github.io/TechTales/img/twitter.jpg" alt="Post one image">
+        <p>This is the caption</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#preparing-our-work-enviromment" aria-label="Preparing our work enviromment">Preparing our work enviromment</a><ul>
+                        
+                <li>
+                    <a href="#installing-the-packages" aria-label="Installing the packages">Installing the packages</a></li>
+                <li>
+                    <a href="#importing" aria-label="Importing">Importing</a></li></ul>
+                </li>
+                <li>
+                    <a href="#twitters-api" aria-label="Twitter&amp;rsquo;s API">Twitter&rsquo;s API</a><ul>
+                        
+                <li>
+                    <a href="#creation-your-apis-keys" aria-label="Creation your API&amp;rsquo;s keys">Creation your API&rsquo;s keys</a></li>
+                <li>
+                    <a href="#api-client-authentication-and-creation" aria-label="API Client Authentication and Creation">API Client Authentication and Creation</a></li>
+                <li>
+                    <a href="#getting-the-data" aria-label="Getting the data">Getting the data</a></li>
+                <li>
+                    <a href="#understanding-our-results" aria-label="Understanding our results">Understanding our results</a></li>
+                <li>
+                    <a href="#extracting-the-diffrent-elements-of-our-tweets" aria-label="Extracting the diffrent elements of our tweets">Extracting the diffrent elements of our tweets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#pre-processing" aria-label="Pre-processing">Pre-processing</a><ul>
+                        
+                <li>
+                    <a href="#converting-our-results-to-a-dataframe" aria-label="Converting our results to a dataframe">Converting our results to a dataframe</a></li>
+                <li>
+                    <a href="#downloading-stopwords-from-nltk" aria-label="Downloading stopwords from nltk">Downloading stopwords from nltk</a></li>
+                <li>
+                    <a href="#defining-a-cleaning-fonction" aria-label="Defining a cleaning fonction">Defining a cleaning fonction</a></li>
+                <li>
+                    <a href="#cleaning-the-data" aria-label="Cleaning the data">Cleaning the data</a></li></ul>
+                </li>
+                <li>
+                    <a href="#analysis" aria-label="Analysis">Analysis</a><ul>
+                        
+                <li>
+                    <a href="#single-words-analysis" aria-label="Single words analysis">Single words analysis</a></li>
+                <li>
+                    <a href="#wordcloud" aria-label="Wordcloud">Wordcloud</a></li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Hey there, fellow data nerds! Today we&rsquo;re going to dive into the world of brand sentiment analysis using Twitter&rsquo;s API. Strap on your thinking caps and let&rsquo;s get started!</p>
+<p>First things first, what is brand sentiment analysis? Simply put, it&rsquo;s the process of determining how people feel about a particular brand or product by analyzing their social media interactions. By examining tweets, comments, and other online chatter, we can get a sense of whether people are generally positive, negative, or neutral towards a brand.</p>
+<p>So, why use Twitter&rsquo;s API for this? Well, Twitter is a treasure trove of unfiltered opinions and emotions. It&rsquo;s a place where people go to rant, rave, and share their experiences with the world. As such, it&rsquo;s a prime source of data for sentiment analysis.</p>
+<p>Now, before we dive into the nitty-gritty of how to use Twitter&rsquo;s API for brand sentiment analysis, let&rsquo;s talk about some of the tools and techniques we&rsquo;ll be using.</p>
+<p>For this project, I&rsquo;ll analyse peoples optnions on a french company called Capgemini. I&rsquo;ll be using Python and accomplishing my task in 4 steps:</p>
+<ul>
+<li>Gather data: We&rsquo;ll use Twitter&rsquo;s API to collect tweets containing relevant keywords or hashtags related to our brand of interest.</li>
+<li>Clean and preprocess the data: We&rsquo;ll remove any irrelevant content (e.g. retweets, spam), tokenize the remaining text into individual words, and perform various other text preprocessing steps (e.g. removing stop words, stemming/lemmatization).</li>
+<li>Perform sentiment analysis: Building an NLP model is relatively complex, we will simply use the &rsquo;nltk&rsquo; package which provides us with several NLP functions, including a function to invoke a pre-trained sentiment analysis model.</li>
+<li>Analyze and visualize the results: We&rsquo;ll use various data visualization tools (e.g. word clouds, bar charts) to explore the sentiment of our data and identify any patterns or trends.</li>
+</ul>
+<p>Of course, this is a very high-level overview of the process, and there are countless details and nuances to consider along the way. But hopefully, this gives you a sense of what&rsquo;s involved.</p>
+<h2 id="preparing-our-work-enviromment">Preparing our work enviromment<a hidden class="anchor" aria-hidden="true" href="#preparing-our-work-enviromment">#</a></h2>
+<p>Let&rsquo;s install and import everything we&rsquo;ll need, we&rsquo;ll talk about these packages as we move on.</p>
+<h3 id="installing-the-packages">Installing the packages<a hidden class="anchor" aria-hidden="true" href="#installing-the-packages">#</a></h3>
+<pre tabindex="0"><code>!pip install tweepy
+!pip install oauth2client
+!pip install nltk
+!pip install emoji
+!pip install wordcloud
+!pip install geopy
+!pip install folium
+</code></pre><h3 id="importing">Importing<a hidden class="anchor" aria-hidden="true" href="#importing">#</a></h3>
+<p>General packages</p>
+<pre tabindex="0"><code>import pandas as pd
+import numpy as np
+import os
+import itertools
+from tqdm import tqdm
+import datetime
+</code></pre><p>Text analysis packages</p>
+<pre tabindex="0"><code>from nltk.corpus import stopwords
+from nltk.sentiment import SentimentIntensityAnalyzer
+import nltk
+import re
+from collections import Counter
+import emoji
+</code></pre><p>Graphics packages</p>
+<pre tabindex="0"><code>import matplotlib.pyplot as plt
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS
+import folium
+from folium.plugins import MarkerCluster, HeatMap
+from geopy.geocoders import Nominatim
+</code></pre><p>API wrappers Twitter</p>
+<pre tabindex="0"><code>import tweepy
+</code></pre><h2 id="twitters-api">Twitter&rsquo;s API<a hidden class="anchor" aria-hidden="true" href="#twitters-api">#</a></h2>
+<p>In order to accomplish this project, you will need to create an account on <a href="https://developer.twitter.com/en/docs/platform-overview">Twitters Developers Platform</a>.
+I personnally find this API rather difficult to use. Even getting an account could be tricky for new users, so we may comeback to this on a future post.</p>
+<h3 id="creation-your-apis-keys">Creation your API&rsquo;s keys<a hidden class="anchor" aria-hidden="true" href="#creation-your-apis-keys">#</a></h3>
+<p>You will need to start a project on this platform and get the following information: API_KEY, API_SECRET_KEY, BEARER_TOKEN</p>
+<p>image: twitter_API.png</p>
+<p>Replace those on the following code:</p>
+<pre tabindex="0"><code>API_KEY = &#39;XXXXXXXXX&#39;
+API_SECRET_KEY = &#39;XXXXXXXX&#39;
+BEARER_TOKEN = &#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;
+</code></pre><h3 id="api-client-authentication-and-creation">API Client Authentication and Creation<a hidden class="anchor" aria-hidden="true" href="#api-client-authentication-and-creation">#</a></h3>
+<pre tabindex="0"><code>auth = tweepy.AppAuthHandler(API_KEY, API_SECRET_KEY)
+api = tweepy.API(auth, wait_on_rate_limit=True)
+</code></pre><p>This code is using the Tweepy library, which is a Python wrapper for the Twitter API, to authenticate and establish a connection to the Twitter API.</p>
+<p>The first line creates an instance of the AppAuthHandler class provided by Tweepy. This class handles the OAuth2 authentication method for the Twitter API. The API_KEY and API_SECRET_KEY are the keys provided by Twitter to identify the application using the API.</p>
+<p>The second line creates an instance of the API class provided by Tweepy, which allows you to interact with the Twitter API. The auth parameter is set to the AppAuthHandler instance that was created in the previous line. The wait_on_rate_limit parameter is set to True, which means that Tweepy will automatically wait if the API rate limit is reached, instead of throwing an error.</p>
+<p>With these two lines of code, you should be able to make authenticated requests to the Twitter API using the api instance.</p>
+<h3 id="getting-the-data">Getting the data<a hidden class="anchor" aria-hidden="true" href="#getting-the-data">#</a></h3>
+<p>First, you define a string variable query with the value &ldquo;capgemini -filter:retweets&rdquo;. This is the search query that you want to use to search for tweets. notice that we only want to get retweets: this is a way of filtering tweets made by other accounts and not by Capgemini account itself.</p>
+<pre tabindex="0"><code>query =&#34;capgemini -filter:retweets&#34;
+</code></pre><p>Next, you create a Cursor object using the tweepy.Cursor method, passing in the following parameters:</p>
+<ul>
+<li>api.search_tweets: This is the search method of the Twitter API that you want to use to search for tweets.</li>
+<li>q=query: This is the search query that you defined earlier (in my case &ldquo;capgemini&rdquo;).</li>
+<li>lang=&ldquo;en&rdquo;: This specifies that you only want to search for tweets that are written in English.</li>
+<li>tweet_mode=&ldquo;extended&rdquo;: This specifies that you want to retrieve the full text of each tweet (up to 280 characters).</li>
+<li>).items(50): This specifies that you want to retrieve up to 50 tweets that match your search query.</li>
+</ul>
+<pre tabindex="0"><code>tweets = tweepy.Cursor(api.search_tweets,
+                       q=query,
+                       lang=&#34;en&#34;,
+                       tweet_mode=&#34;extended&#34;,
+                       #since=&#34;2021-06-18&#34;, # put here the last week
+                       #until=&#34;2021-06-25&#34;,
+                      ).items(50)
+tweets = list(tweets)
+
+You could also specify dates with the parameter &#39;since&#39; and &#39;until&#39;.
+</code></pre><p>After creating the Cursor object, you convert it to a list using the list() function and assign it to the variable tweets. This retrieves the tweets that match your search query and stores them in a list.</p>
+<h3 id="understanding-our-results">Understanding our results<a hidden class="anchor" aria-hidden="true" href="#understanding-our-results">#</a></h3>
+<p>We have retrivied a list of 50 that match our search query. Let&rsquo;s take a look at what elements are contained in this json response of 1 single tweet:</p>
+<pre tabindex="0"><code>test = list(tweets)[4]
+json_test = test._json
+json_test
+</code></pre><p>This is my full response for 1 single tweet:</p>
+<blockquote>
+<p>{&lsquo;created_at&rsquo;: &lsquo;Fri Apr 14 11:35:01 +0000 2023&rsquo;,
+&lsquo;id&rsquo;: 1646839472493871104,
+&lsquo;id_str&rsquo;: &lsquo;1646839472493871104&rsquo;,
+&lsquo;full_text&rsquo;: &lsquo;Through this initiative, we aim to empower the next generation of leaders &amp; help them get the future they want. Please join us in giving them a warm welcome &amp; wishing them good luck as they embark on a new journey with us at Capgemini. #GetTheFutureYouWant #LifeAtCapgemini <a href="https://t.co/SJVmxP6q4j'">https://t.co/SJVmxP6q4j'</a>,
+&rsquo;truncated&rsquo;: False,
+&lsquo;display_text_range&rsquo;: [0, 281],
+&rsquo;entities&rsquo;: {&lsquo;hashtags&rsquo;: [{&rsquo;text&rsquo;: &lsquo;GetTheFutureYouWant&rsquo;,
+&lsquo;indices&rsquo;: [244, 264]},
+{&rsquo;text&rsquo;: &lsquo;LifeAtCapgemini&rsquo;, &lsquo;indices&rsquo;: [265, 281]}],
+&lsquo;symbols&rsquo;: [],
+&lsquo;user_mentions&rsquo;: [],
+&lsquo;urls&rsquo;: [],
+&lsquo;media&rsquo;: [{&lsquo;id&rsquo;: 1646839435839799296,
+&lsquo;id_str&rsquo;: &lsquo;1646839435839799296&rsquo;,
+&lsquo;indices&rsquo;: [282, 305],
+&lsquo;media_url&rsquo;: &lsquo;http://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg&rsquo;,
+&lsquo;media_url_https&rsquo;: &lsquo;https://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg&rsquo;,
+&lsquo;url&rsquo;: &lsquo;https://t.co/SJVmxP6q4j&rsquo;,
+&lsquo;display_url&rsquo;: &lsquo;pic.twitter.com/SJVmxP6q4j&rsquo;,
+&rsquo;expanded_url&rsquo;: &lsquo;https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1&rsquo;,
+&rsquo;type&rsquo;: &lsquo;photo&rsquo;,
+&lsquo;sizes&rsquo;: {&rsquo;thumb&rsquo;: {&lsquo;w&rsquo;: 150, &lsquo;h&rsquo;: 150, &lsquo;resize&rsquo;: &lsquo;crop&rsquo;},
+&lsquo;medium&rsquo;: {&lsquo;w&rsquo;: 1024, &lsquo;h&rsquo;: 768, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&rsquo;large&rsquo;: {&lsquo;w&rsquo;: 1024, &lsquo;h&rsquo;: 768, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&lsquo;small&rsquo;: {&lsquo;w&rsquo;: 680, &lsquo;h&rsquo;: 510, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;}}}]},
+&rsquo;extended_entities&rsquo;: {&lsquo;media&rsquo;: [{&lsquo;id&rsquo;: 1646839435839799296,
+&lsquo;id_str&rsquo;: &lsquo;1646839435839799296&rsquo;,
+&lsquo;indices&rsquo;: [282, 305],
+&lsquo;media_url&rsquo;: &lsquo;http://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg&rsquo;,
+&lsquo;media_url_https&rsquo;: &lsquo;https://pbs.twimg.com/media/Ftq_vddWAAAFSkS.jpg&rsquo;,
+&lsquo;url&rsquo;: &lsquo;https://t.co/SJVmxP6q4j&rsquo;,
+&lsquo;display_url&rsquo;: &lsquo;pic.twitter.com/SJVmxP6q4j&rsquo;,
+&rsquo;expanded_url&rsquo;: &lsquo;https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1&rsquo;,
+&rsquo;type&rsquo;: &lsquo;photo&rsquo;,
+&lsquo;sizes&rsquo;: {&rsquo;thumb&rsquo;: {&lsquo;w&rsquo;: 150, &lsquo;h&rsquo;: 150, &lsquo;resize&rsquo;: &lsquo;crop&rsquo;},
+&lsquo;medium&rsquo;: {&lsquo;w&rsquo;: 1024, &lsquo;h&rsquo;: 768, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&rsquo;large&rsquo;: {&lsquo;w&rsquo;: 1024, &lsquo;h&rsquo;: 768, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&lsquo;small&rsquo;: {&lsquo;w&rsquo;: 680, &lsquo;h&rsquo;: 510, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;}}},
+{&lsquo;id&rsquo;: 1646839436766765057,
+&lsquo;id_str&rsquo;: &lsquo;1646839436766765057&rsquo;,
+&lsquo;indices&rsquo;: [282, 305],
+&lsquo;media_url&rsquo;: &lsquo;http://pbs.twimg.com/media/Ftq_vg6WYAE0cyW.jpg&rsquo;,
+&lsquo;media_url_https&rsquo;: &lsquo;https://pbs.twimg.com/media/Ftq_vg6WYAE0cyW.jpg&rsquo;,
+&lsquo;url&rsquo;: &lsquo;https://t.co/SJVmxP6q4j&rsquo;,
+&lsquo;display_url&rsquo;: &lsquo;pic.twitter.com/SJVmxP6q4j&rsquo;,
+&rsquo;expanded_url&rsquo;: &lsquo;https://twitter.com/CapgeminiIndia/status/1646839472493871104/photo/1&rsquo;,
+&rsquo;type&rsquo;: &lsquo;photo&rsquo;,
+&lsquo;sizes&rsquo;: {&rsquo;thumb&rsquo;: {&lsquo;w&rsquo;: 150, &lsquo;h&rsquo;: 150, &lsquo;resize&rsquo;: &lsquo;crop&rsquo;},
+&rsquo;large&rsquo;: {&lsquo;w&rsquo;: 1600, &lsquo;h&rsquo;: 1200, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&lsquo;medium&rsquo;: {&lsquo;w&rsquo;: 1200, &lsquo;h&rsquo;: 900, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;},
+&lsquo;small&rsquo;: {&lsquo;w&rsquo;: 680, &lsquo;h&rsquo;: 510, &lsquo;resize&rsquo;: &lsquo;fit&rsquo;}}}]},
+&lsquo;metadata&rsquo;: {&lsquo;iso_language_code&rsquo;: &rsquo;en&rsquo;, &lsquo;result_type&rsquo;: &lsquo;recent&rsquo;},
+&lsquo;source&rsquo;: &lsquo;<a href="https://mobile.twitter.com" rel="nofollow">Twitter Web App</a>&rsquo;,
+&lsquo;in_reply_to_status_id&rsquo;: 1646839468219850752,
+&lsquo;in_reply_to_status_id_str&rsquo;: &lsquo;1646839468219850752&rsquo;,
+&lsquo;in_reply_to_user_id&rsquo;: 44105494,
+&lsquo;in_reply_to_user_id_str&rsquo;: &lsquo;44105494&rsquo;,
+&lsquo;in_reply_to_screen_name&rsquo;: &lsquo;CapgeminiIndia&rsquo;,
+&lsquo;user&rsquo;: {&lsquo;id&rsquo;: 44105494,
+&lsquo;id_str&rsquo;: &lsquo;44105494&rsquo;,
+&rsquo;name&rsquo;: &lsquo;Capgemini India&rsquo;,
+&lsquo;screen_name&rsquo;: &lsquo;CapgeminiIndia&rsquo;,
+&rsquo;location&rsquo;: &lsquo;13 major cities across India&rsquo;,
+&lsquo;description&rsquo;: &lsquo;We explore the endless possibilities of tech-driven services enabled by the human touch. Follow @JoinCapgeminiIN for live hiring updates &amp; #GetTheFutureYouWant!&rsquo;,
+&lsquo;url&rsquo;: &lsquo;<a href="https://t.co/ykRGVlR5JI'">https://t.co/ykRGVlR5JI'</a>,
+&rsquo;entities&rsquo;: {&lsquo;url&rsquo;: {&lsquo;urls&rsquo;: [{&lsquo;url&rsquo;: &lsquo;https://t.co/ykRGVlR5JI&rsquo;,
+&rsquo;expanded_url&rsquo;: &lsquo;https://www.capgemini.com/in-en/&rsquo;,
+&lsquo;display_url&rsquo;: &lsquo;capgemini.com/in-en/&rsquo;,
+&lsquo;indices&rsquo;: [0, 23]}]},
+&lsquo;description&rsquo;: {&lsquo;urls&rsquo;: []}},
+&lsquo;protected&rsquo;: False,
+&lsquo;followers_count&rsquo;: 170079,
+&lsquo;friends_count&rsquo;: 955,
+&rsquo;listed_count&rsquo;: 788,
+&lsquo;created_at&rsquo;: &lsquo;Tue Jun 02 12:01:57 +0000 2009&rsquo;,
+&lsquo;favourites_count&rsquo;: 10943,
+&lsquo;utc_offset&rsquo;: None,
+&rsquo;time_zone&rsquo;: None,
+&lsquo;geo_enabled&rsquo;: True,
+&lsquo;verified&rsquo;: True,
+&lsquo;statuses_count&rsquo;: 42683,
+&rsquo;lang&rsquo;: None,
+&lsquo;contributors_enabled&rsquo;: False,
+&lsquo;is_translator&rsquo;: False,
+&lsquo;is_translation_enabled&rsquo;: False,
+&lsquo;profile_background_color&rsquo;: &lsquo;C0DEED&rsquo;,
+&lsquo;profile_background_image_url&rsquo;: &lsquo;<a href="http://abs.twimg.com/images/themes/theme1/bg.png'">http://abs.twimg.com/images/themes/theme1/bg.png'</a>,
+&lsquo;profile_background_image_url_https&rsquo;: &lsquo;<a href="https://abs.twimg.com/images/themes/theme1/bg.png'">https://abs.twimg.com/images/themes/theme1/bg.png'</a>,
+&lsquo;profile_background_tile&rsquo;: False,
+&lsquo;profile_image_url&rsquo;: &lsquo;<a href="http://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg'">http://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg'</a>,
+&lsquo;profile_image_url_https&rsquo;: &lsquo;<a href="https://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg'">https://pbs.twimg.com/profile_images/1610246748349550592/gm0U6AqU_normal.jpg'</a>,
+&lsquo;profile_banner_url&rsquo;: &lsquo;<a href="https://pbs.twimg.com/profile_banners/44105494/1671516631'">https://pbs.twimg.com/profile_banners/44105494/1671516631'</a>,
+&lsquo;profile_link_color&rsquo;: &lsquo;3B94D9&rsquo;,
+&lsquo;profile_sidebar_border_color&rsquo;: &lsquo;C0DEED&rsquo;,
+&lsquo;profile_sidebar_fill_color&rsquo;: &lsquo;DDEEF6&rsquo;,
+&lsquo;profile_text_color&rsquo;: &lsquo;333333&rsquo;,
+&lsquo;profile_use_background_image&rsquo;: True,
+&lsquo;has_extended_profile&rsquo;: False,
+&lsquo;default_profile&rsquo;: False,
+&lsquo;default_profile_image&rsquo;: False,
+&lsquo;following&rsquo;: None,
+&lsquo;follow_request_sent&rsquo;: None,
+&rsquo;notifications&rsquo;: None,
+&rsquo;translator_type&rsquo;: &rsquo;none&rsquo;,
+&lsquo;withheld_in_countries&rsquo;: []},
+&lsquo;geo&rsquo;: None,
+&lsquo;coordinates&rsquo;: None,
+&lsquo;place&rsquo;: None,
+&lsquo;contributors&rsquo;: None,
+&lsquo;is_quote_status&rsquo;: False,
+&lsquo;retweet_count&rsquo;: 0,
+&lsquo;favorite_count&rsquo;: 1,
+&lsquo;favorited&rsquo;: False,
+&lsquo;retweeted&rsquo;: False,
+&lsquo;possibly_sensitive&rsquo;: False,
+&rsquo;lang&rsquo;: &rsquo;en&rsquo;}</p>
+</blockquote>
+<p>As you can see, a tweet contains much for the it&rsquo;s text. Now we can extract the information we need for our analyses using the .attribute syntax (.full_text, .user.screen_name, etc.) to extract the text of the tweet, its creation date, hashtags, user&rsquo;s location, user&rsquo;s follower count, user&rsquo;s status count, tweet&rsquo;s retweet count, and tweet&rsquo;s favorite count. For exemple:</p>
+<pre tabindex="0"><code>test.full_text
+</code></pre><blockquote>
+<p>&lsquo;Through this initiative, we aim to empower the next generation of leaders &amp; help them get the future they want. Please join us in giving them a warm welcome &amp; wishing them good luck as they embark on a new journey with us at Capgemini. #GetTheFutureYouWant #LifeAtCapgemini <a href="https://t.co/SJVmxP6q4j'">https://t.co/SJVmxP6q4j'</a></p>
+</blockquote>
+<h3 id="extracting-the-diffrent-elements-of-our-tweets">Extracting the diffrent elements of our tweets<a hidden class="anchor" aria-hidden="true" href="#extracting-the-diffrent-elements-of-our-tweets">#</a></h3>
+<p>The attributes we want to extract are the following: full_text, created_at, entities.hashtags, user.location, user.followers_count, user.statuses_count, retweet_count, favorite_count</p>
+<pre tabindex="0"><code>tweets_infos = []
+for tweet in tqdm(tweets):
+    tweet_info = [tweet.full_text, 
+                    tweet.created_at, 
+                    [h[&#39;text&#39;] for h in tweet.entities[&#39;hashtags&#39;]], 
+                    tweet.user.location, 
+                    tweet.user.followers_count, 
+                    tweet.user.statuses_count, 
+                    tweet.retweet_count, 
+                    tweet.favorite_count] 
+    tweets_infos.append(tweet_info)
+</code></pre><p>The code provided extracts information from a list of tweets retrieved from the Twitter API. It iterates through each tweet in the list and extracts the full text of the tweet, creation date, hashtags, user location, follower count, status count, retweet count, and favorite count using various attributes of the tweet object. The extracted information is stored in a list of lists called tweets_infos.</p>
+<p>Note that:</p>
+<ul>
+<li>tqdm is a Python library for creating progress bars, and it is used here to provide a visual indication of the progress of the loop.</li>
+<li>[h[&rsquo;text&rsquo;] for h in tweet.entities[&lsquo;hashtags&rsquo;]]: This extracts the hashtags used in the tweet. The entities attribute of the tweet object contains metadata about the tweet, including hashtags. This line uses a list comprehension to extract the text of each hashtag in the tweet.</li>
+</ul>
+<h2 id="pre-processing">Pre-processing<a hidden class="anchor" aria-hidden="true" href="#pre-processing">#</a></h2>
+<h3 id="converting-our-results-to-a-dataframe">Converting our results to a dataframe<a hidden class="anchor" aria-hidden="true" href="#converting-our-results-to-a-dataframe">#</a></h3>
+<p>Now let&rsquo;s create a dataframe and take a look at our results.</p>
+<pre tabindex="0"><code>df = pd.DataFrame(tweets_infos)
+df.columns = [&#39;full_text&#39;, &#39;created_at&#39;, &#39;hashtags&#39;, &#39;location&#39;,
+              &#39;followers&#39;, &#39;statuses&#39;, &#39;retweets&#39;, &#39;favorites&#39;]
+df
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:left">full_text</th>
+<th style="text-align:left">created_at</th>
+<th style="text-align:left">hashtags</th>
+<th style="text-align:left">location</th>
+<th style="text-align:right">followers</th>
+<th style="text-align:right">statuses</th>
+<th style="text-align:right">retweets</th>
+<th style="text-align:right">favorites</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:left">@rahulphatangare Same thing happened with my relative but Its capgemini</td>
+<td style="text-align:left">2023-04-14 12:51:44+00:00</td>
+<td style="text-align:left">[]</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">629</td>
+<td style="text-align:right">48890</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:left">🔔 New Job Alert! Check Out 👉Capgemini Invent - Graduate Business Technology Accelerate Programme. Apply Now! 🎓</td>
+<td style="text-align:left">2023-04-14 12:01:34+00:00</td>
+<td style="text-align:left">[&lsquo;graduate&rsquo;, &lsquo;jobs&rsquo;, &lsquo;graduatejobs&rsquo;, &lsquo;capgemini&rsquo;, &lsquo;grb&rsquo;]</td>
+<td style="text-align:left">Brighton and London, UK</td>
+<td style="text-align:right">18763</td>
+<td style="text-align:right">16081</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="downloading-stopwords-from-nltk">Downloading stopwords from nltk<a hidden class="anchor" aria-hidden="true" href="#downloading-stopwords-from-nltk">#</a></h3>
+<p>Stopwords are common words such as &ldquo;the&rdquo;, &ldquo;and&rdquo;, &ldquo;is&rdquo;, etc., that are often removed from text data during text processing tasks like text analysis or natural language processing (NLP) to filter out noise and reduce computational overhead. We are goint to download a list of stopwords using the NLTK (Natural Language Toolkit) package in Python.</p>
+<pre tabindex="0"><code>nltk.download(&#39;stopwords&#39;)
+stop_words = set(stopwords.words(&#39;english&#39;))
+</code></pre><h3 id="defining-a-cleaning-fonction">Defining a cleaning fonction<a hidden class="anchor" aria-hidden="true" href="#defining-a-cleaning-fonction">#</a></h3>
+<pre tabindex="0"><code>def clean_tweet(txt):
+    return re.sub(&#34;(http\S+)|(@\S+)&#34;, &#34;&#34;, txt).replace(&#39;#&#39;, &#39;&#39;)
+</code></pre><p>The clean_tweet() function will be called to clean the tweet text by removing any unnecessary characters or symbols, and the resulting cleaned text is converted to lowercase using the .lower() function.</p>
+<h3 id="cleaning-the-data">Cleaning the data<a hidden class="anchor" aria-hidden="true" href="#cleaning-the-data">#</a></h3>
+<p>First, the tweets_text variable is created to store the text of the tweets by extracting the first element (i.e., the full text) from the tweets_infos list. Next, a corpus list is initialized to store the processed text data after pre-processing steps.</p>
+<pre tabindex="0"><code>tweets_text = [t[0] for t in tweets_infos]
+corpus = []
+for tweet in tweets_text:
+    clean = clean_tweet(tweet).lower()
+    clean = re.sub(r&#39;[^\w\s\U00010000-\U0010ffff]&#39;, &#39; &#39;, clean)
+    clean = clean.split()
+    collection_words = [&#39;capgemini&#39;]
+    clean = [word for word in clean if not word in collection_words]
+    clean = [word for word in clean if not word in stop_words]
+    corpus.extend(clean)
+</code></pre><ul>
+<li>The re.sub() function is used to substitute any characters or symbols that are not alphanumeric or whitespace with a space character. This step helps in removing any special characters or emojis from the text data.</li>
+<li>clean = clean.split(): The tweet text is then split into a list of words using the .split() function, which separates words based on whitespace.</li>
+<li>collection_words = [&lsquo;capgemini&rsquo;]: A list of collection words, which are words that are known to be irrelevant or redundant in the context of the analysis, is created.</li>
+</ul>
+<p>A list comprehension is used to filter out the collection words from the list of words in the tweet text. Then another list comprehension is used to remove the stop words.</p>
+<h2 id="analysis">Analysis<a hidden class="anchor" aria-hidden="true" href="#analysis">#</a></h2>
+<p>So what can we say about these tweets?</p>
+<h3 id="single-words-analysis">Single words analysis<a hidden class="anchor" aria-hidden="true" href="#single-words-analysis">#</a></h3>
+<p>Let&rsquo;s count how many single words we have:</p>
+<pre tabindex="0"><code>print(f&#34;There are {len(set(corpus))} words in the combination of all searched tweets.&#34;).
+</code></pre><p>There are 533 words in the combination of all searched tweets.</p>
+<p>Which ones are the most frequent?</p>
+<pre tabindex="0"><code>top10_words = Counter(corpus).most_common(10)
+top10_words
+</code></pre><blockquote>
+<p>[(&lsquo;apply&rsquo;, 8),
+(&lsquo;2023&rsquo;, 7),
+(&lsquo;us&rsquo;, 7),
+(&lsquo;getthefutureyouwant&rsquo;, 7),
+(&rsquo;new&rsquo;, 6),
+(&lsquo;job&rsquo;, 6),
+(&lsquo;join&rsquo;, 6),
+(&lsquo;journey&rsquo;, 5),
+(&lsquo;data&rsquo;, 5),
+(&rsquo;next&rsquo;, 4)]</p>
+</blockquote>
+<p>We can also show this single word analysis in a bar plot:</p>
+<pre tabindex="0"><code>def plot_frequencies(words, top=15):
+    
+    # Create dataframe for plotting
+    frequency_df = pd.DataFrame(Counter(words).most_common(top),
+                             columns=[&#39;words&#39;, &#39;count&#39;])
+    
+    # Plot
+    frequency_df.sort_values(by=&#39;count&#39;).plot.barh(x=&#39;words&#39;,
+                                                   y=&#39;count&#39;,
+                                                   color=&#34;red&#34;)
+    plt.title(&#34;Most Common Words in Tweets&#34;, fontweight=&#39;semibold&#39;)
+    plt.show()
+
+plot_frequencies(corpus, top=10)
+</code></pre><p><img loading="lazy" src="static/img/plot_frequencies.png" alt="Plot Frequencies"  />
+</p>
+<h3 id="wordcloud">Wordcloud<a hidden class="anchor" aria-hidden="true" href="#wordcloud">#</a></h3>
+<pre tabindex="0"><code>def wordcloud(corpus, title=None, mask=None, figsize=(10, 10)):
+     
+    # preprocess data
+    corpus = str(corpus).replace(&#34;&#39;&#34;, &#34;&#34;)
+    
+    wordcloud = WordCloud(
+        background_color = &#39;white&#39;,
+        max_font_size = 45,
+        min_font_size = 5,
+        contour_width = 0.1,
+        contour_color = &#39;silver&#39;,
+        repeat = True,
+        stopwords=STOPWORDS,
+        random_state = 1).generate(str(corpus))
+    
+    fig = plt.figure(1, figsize=figsize)
+    plt.axis(&#39;off&#39;)
+    if title:
+        fig.suptitle(title, fontsize=18, y=0.75)
+    plt.imshow(wordcloud)
+
+wordcloud(corpus, title=&#34;Most Common Words in Tweets&#34;)
+</code></pre><p><img loading="lazy" src="static/img/wordcloud.png" alt="Wordcloud"  />
+</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>So, what are some potential applications of brand sentiment analysis using Twitter&rsquo;s API? Here are a few:</p>
+<p>Market research: By understanding how people feel about a particular brand or product, companies can make more informed decisions about marketing strategies, product development, and customer service.</p>
+<p>Crisis management: If a company experiences a PR crisis (e.g. a product recall, a viral negative review), sentiment analysis can help them gauge the public&rsquo;s response and take appropriate action.</p>
+<p>Competitive analysis: By comparing the sentiment of their brand to that of their competitors, companies can gain insights into their relative strengths and weaknesses in the marketplace.</p>
+<p>Overall, brand sentiment analysis using Twitter&rsquo;s API is a powerful tool for gaining insights into the public&rsquo;s perceptions of a particular brand or product. With the right tools, techniques, and a healthy dose of data science know-how, you can unlock valuable insights that can inform business decisions and drive growth. So get out there and start analyzing those tweets!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://karinaduart.github.io/TechTales/tags/api/">API</a></li>
+      <li><a href="https://karinaduart.github.io/TechTales/tags/twitter/">Twitter</a></li>
+      <li><a href="https://karinaduart.github.io/TechTales/tags/sentiment-analysis/">Sentiment Analysis</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://karinaduart.github.io/TechTales/posts/geocode/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Geopy: Geolocate Addresses Easily</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on twitter"
+        href="https://twitter.com/intent/tweet/?text=Sentiment%20Analysis%20on%20Twitter&amp;url=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f&amp;hashtags=API%2cTwitter%2cSentimentAnalysis">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f&amp;title=Sentiment%20Analysis%20on%20Twitter&amp;summary=Sentiment%20Analysis%20on%20Twitter&amp;source=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f&title=Sentiment%20Analysis%20on%20Twitter">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on whatsapp"
+        href="https://api.whatsapp.com/send?text=Sentiment%20Analysis%20on%20Twitter%20-%20https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Sentiment Analysis on Twitter on telegram"
+        href="https://telegram.me/share/url?text=Sentiment%20Analysis%20on%20Twitter&amp;url=https%3a%2f%2fkarinaduart.github.io%2fTechTales%2fposts%2ftwitter%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://karinaduart.github.io/TechTales/">TechTales</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
